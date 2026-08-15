@@ -9,7 +9,6 @@ The application combines a React + Vite frontend with a Spring Boot REST API, JW
 
 ---
 
-## 🚀 Live Demo
 
 ### 🌐 Application
 
@@ -32,22 +31,19 @@ The application combines a React + Vite frontend with a Spring Boot REST API, JW
 
 ### Login
 
-![ExpenseFlow Login](expenseflow\screenshots\add-expense.png)
+![ExpenseFlow Login](screenshots/login.png)
 
 ### Dashboard
 
-![ExpenseFlow Dashboard](expenseflow\screenshots\dashboard.png)
+![ExpenseFlow Dashboard](screenshots/dashboard.png)
 
 ### Expenses
 
-![ExpenseFlow Expenses](expenseflow\screenshots\expenses.png)
+![ExpenseFlow Expenses](screenshots/expenses.png)
 
 ### Add Expense
 
-![ExpenseFlow Add Expense](expenseflow\screenshots\add-expense.png)
-
-> Replace the image paths above with the actual names/locations of your screenshots.
-
+![ExpenseFlow Add Expense](screenshots/add-expense.png)
 ---
 
 ## ✨ Features
