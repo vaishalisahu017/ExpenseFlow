@@ -1,167 +1,660 @@
+
 # ExpenseFlow
 
-ExpenseFlow is a secure, resume-ready full-stack expense tracker built with Spring Boot, MySQL, React, and Vite. It helps users register, login, manage expenses, and view spending analytics through a clean blue/white dashboard.
+### Full-Stack Personal Expense Management Platform
 
-## Live Demo
+ExpenseFlow is a full-stack expense management application designed to help users securely track, manage, and analyze their personal expenses through a modern web interface.
 
-Placeholder: add your deployed frontend URL after deployment.
+The application combines a React + Vite frontend with a Spring Boot REST API, JWT-based authentication, and a MySQL relational database. The production application is deployed using Vercel and Railway.
 
-## GitHub Repository
+---
 
-Placeholder: add your GitHub repository URL after pushing the project.
+## 🚀 Live Demo
 
-## Screenshots
+### 🌐 Application
 
-Placeholder: add dashboard, expenses, login, and profile screenshots.
+**[Open ExpenseFlow](https://expense-flow-kohl-ten.vercel.app/)**
 
-## Main Features
+### 📚 Production API Documentation
 
-- JWT authentication with BCrypt password hashing.
-- Protected expense, dashboard, user, and profile views.
-- Expense CRUD with validation, pagination, sorting, searching, and date filtering.
-- Dashboard summary cards for total expenses, total spending, average expense, and highest expense.
-- Recharts analytics for category spending and monthly trends.
-- Recent expenses table and category/monthly spending summaries.
-- Profile page with account details and frontend-ready profile update forms.
-- Light/dark mode with localStorage persistence.
-- Friendly empty states, loading skeletons, toast notifications, and custom 404 page.
-- Swagger/OpenAPI documentation for backend APIs.
+**[Open Swagger UI](https://expenseflow-production-d9e1.up.railway.app/swagger-ui/index.html)**
 
-## Technology Stack
+### 🔗 Backend API
 
-- Backend: Java 21, Spring Boot 3.5.4, Spring Web, Spring Security, Spring Data JPA, Hibernate, MySQL, Maven, Springdoc OpenAPI.
-- Frontend: React 18, Vite, React Router, Axios, Recharts, react-hot-toast, plain CSS.
-- Architecture: Controller -> Service -> Repository on the backend; pages, reusable components, hooks, context, and services on the frontend.
+**[ExpenseFlow API](https://expenseflow-production-d9e1.up.railway.app/)**
 
-## Authentication
+> The frontend is hosted on Vercel, while the Spring Boot backend and MySQL database are hosted on Railway.
 
-- Public backend endpoints: `/auth/register`, `/auth/login`, Swagger/OpenAPI endpoints.
-- Protected backend endpoints: users, expenses, and dashboard.
-- Frontend stores the JWT in `localStorage` under `expenseflow_token`.
-- Axios attaches `Authorization: Bearer <token>` automatically.
-- Expired or invalid JWT responses redirect the user to `/login`.
-- Passwords are hashed with BCrypt and are never returned in API responses.
+---
+---
 
-## Database
+## 📸 Screenshots
 
-ExpenseFlow uses MySQL with Hibernate/JPA. The backend expects a MySQL database to exist before startup.
+### Login
 
-Example local database:
+![ExpenseFlow Login](expenseflow\screenshots\add-expense.png)
 
-```sql
-CREATE DATABASE expenseflow_db;
-```
+### Dashboard
 
-Hibernate manages tables using:
+![ExpenseFlow Dashboard](expenseflow\screenshots\dashboard.png)
 
-```properties
-spring.jpa.hibernate.ddl-auto=update
-```
+### Expenses
 
-## Environment Variables
+![ExpenseFlow Expenses](expenseflow\screenshots\expenses.png)
 
-Backend:
+### Add Expense
+
+![ExpenseFlow Add Expense](expenseflow\screenshots\add-expense.png)
+
+> Replace the image paths above with the actual names/locations of your screenshots.
+
+---
+
+## ✨ Features
+
+### 🔐 Authentication & Authorization
+
+- User registration and login
+- JWT-based authentication
+- Protected application routes
+- Secure password handling
+- Authenticated API requests
+- Logout functionality
+- User-specific expense data
+
+### 💰 Expense Management
+
+- Add new expenses
+- View expenses
+- Update existing expenses
+- Delete expenses
+- Categorize expenses
+- Track expense amounts and dates
+- User-specific expense records
+
+### 📊 Dashboard & Analytics
+
+- Expense summary dashboard
+- Spending insights
+- Category-based spending information
+- Monthly spending information
+- Recent expense information
+- Visual spending analysis
+
+### 👤 User Management
+
+- User registration
+- User authentication
+- Profile information
+- User-specific data isolation
+
+### 🛡️ Backend & API
+
+- RESTful API architecture
+- Spring Boot backend
+- Spring Data JPA / Hibernate
+- MySQL relational database
+- DTO-based API responses
+- Centralized exception handling
+- JWT security filter
+- OpenAPI / Swagger documentation
+- CORS configuration
+
+### 🚀 Production Deployment
+
+- React frontend deployed on Vercel
+- Spring Boot backend deployed on Railway
+- MySQL database deployed on Railway
+- Production environment variables
+- GitHub-based deployment workflow
+- Separate development and production configuration
+
+---
+
+## 🏗️ System Architecture
 
 ```text
-DB_URL=jdbc:mysql://localhost:3306/expenseflow_db
-DB_USERNAME=root
-DB_PASSWORD=your_local_mysql_password
-JWT_SECRET=replace_with_a_long_random_secret
-JWT_EXPIRATION_SECONDS=86400
-FRONTEND_ORIGIN=http://localhost:5173
-JPA_SHOW_SQL=false
-```
+                         ┌──────────────────────────┐
+                         │        User Browser      │
+                         │                          │
+                         │     React + Vite UI      │
+                         └────────────┬─────────────┘
+                                      │
+                                      │ HTTPS / REST API
+                                      ▼
+                         ┌──────────────────────────┐
+                         │       Spring Boot        │
+                         │       REST Backend       │
+                         │                          │
+                         │  Controllers             │
+                         │  Services                │
+                         │  Security / JWT          │
+                         │  DTOs                    │
+                         │  Exception Handling      │
+                         └────────────┬─────────────┘
+                                      │
+                                      │ JPA / Hibernate
+                                      ▼
+                         ┌──────────────────────────┐
+                         │          MySQL           │
+                         │      Relational DB       │
+                         └──────────────────────────┘
 
-Frontend:
+
+        Deployment
+        ───────────────────────────────────────────
+
+             Vercel                  Railway
+        ┌───────────────┐      ┌─────────────────┐
+        │ React/Vite    │ ───► │ Spring Boot API │
+        │ Frontend      │      └────────┬────────┘
+        └───────────────┘               │
+                                        ▼
+                                ┌─────────────────┐
+                                │ Railway MySQL   │
+                                └─────────────────┘
+````
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+* React
+* Vite
+* JavaScript
+* CSS
+* React Router
+* Fetch/API integration
+
+### Backend
+
+* Java
+* Spring Boot
+* Spring Web
+* Spring Data JPA
+* Hibernate
+* Spring Security
+* JWT
+* Maven
+
+### Database
+
+* MySQL
+
+### API
+
+* REST
+* JSON
+* OpenAPI
+* Swagger UI
+
+### Development Tools
+
+* Git
+* GitHub
+* Visual Studio Code
+* Maven
+* npm
+
+### Deployment
+
+* Vercel — Frontend
+* Railway — Backend
+* Railway — MySQL Database
+
+---
+
+## 📁 Project Structure
 
 ```text
-VITE_API_URL=http://localhost:8080
+ExpenseFlow/
+│
+├── expenseflow/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── expenseflow/
+│   │   │   │       └── expenseflow/
+│   │   │   │           ├── config/
+│   │   │   │           ├── controller/
+│   │   │   │           ├── dto/
+│   │   │   │           ├── entity/
+│   │   │   │           ├── exception/
+│   │   │   │           ├── repository/
+│   │   │   │           ├── security/
+│   │   │   │           ├── service/
+│   │   │   │           └── util/
+│   │   │   │
+│   │   │   └── resources/
+│   │   │       ├── application.properties
+│   │   │       └── application-example.properties
+│   │   │
+│   │   └── test/
+│   │
+│   ├── pom.xml
+│   ├── mvnw
+│   ├── mvnw.cmd
+│   ├── API_DOCUMENTATION.md
+│   └── README.md
+│
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── context/
+│   │   ├── hooks/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   ├── styles/
+│   │   └── utils/
+│   ├── package.json
+│   └── vite.config.js
+│
+├── .gitignore
+├── README.md
+└── package-lock.json
 ```
 
-Use `frontend/.env.example` and `expenseflow/src/main/resources/application-example.properties` as references. Do not commit real `.env` files or secrets.
+---
 
-## Backend Setup
+# 🔑 Authentication Flow
+
+ExpenseFlow uses JWT-based authentication.
+
+```text
+1. User registers
+        │
+        ▼
+2. Backend validates registration data
+        │
+        ▼
+3. User logs in
+        │
+        ▼
+4. Backend authenticates credentials
+        │
+        ▼
+5. Backend generates JWT
+        │
+        ▼
+6. Frontend stores authentication state
+        │
+        ▼
+7. Authenticated requests include JWT
+        │
+        ▼
+8. JWT security filter validates the request
+        │
+        ▼
+9. Protected resources are accessed
+```
+
+This allows the backend to enforce authentication independently from the frontend.
+
+---
+
+# 🔌 API Documentation
+
+ExpenseFlow provides an OpenAPI-documented REST API.
+
+### Production Swagger UI
+
+**[View the API documentation](https://expenseflow-production-d9e1.up.railway.app/swagger-ui/index.html)**
+
+The API includes endpoints for:
+
+* Authentication
+* User management
+* Expense management
+* Dashboard data
+* Spending information
+
+For additional API documentation, see:
+
+```text
+expenseflow/API_DOCUMENTATION.md
+```
+
+---
+
+# 💻 Local Development
+
+## Prerequisites
+
+Make sure the following are installed:
+
+* Java 21
+* Node.js
+* npm
+* MySQL
+* Git
+
+---
+
+## 1. Clone the repository
+
+```bash
+git clone https://github.com/vaishalisahu017/ExpenseFlow.git
+cd ExpenseFlow
+```
+
+---
+
+# 2. Backend Setup
+
+Navigate to the backend:
 
 ```bash
 cd expenseflow
-mvn spring-boot:run
+```
+
+The backend uses environment variables for database credentials, JWT configuration, and frontend origin.
+
+Create your local environment configuration based on:
+
+```text
+expenseflow/src/main/resources/application-example.properties
+```
+
+Configure the required values for your local MySQL instance.
+
+The application expects variables such as:
+
+```text
+DB_URL
+DB_USERNAME
+DB_PASSWORD
+JWT_SECRET
+JWT_EXPIRATION_SECONDS
+FRONTEND_ORIGIN
+JPA_SHOW_SQL
+```
+
+> Never commit real database credentials, JWT secrets, API keys, or other sensitive configuration to GitHub.
+
+---
+
+## 3. Start the Spring Boot backend
+
+### Windows
+
+```bash
+.\mvnw.cmd spring-boot:run
+```
+
+### macOS / Linux
+
+```bash
+./mvnw spring-boot:run
+```
+
+The backend will normally be available at:
+
+```text
+http://localhost:8080
 ```
 
 Swagger UI:
 
 ```text
-http://localhost:8080/swagger-ui.html
+http://localhost:8080/swagger-ui/index.html
 ```
 
-OpenAPI JSON:
+---
 
-```text
-http://localhost:8080/v3/api-docs
-```
+# 4. Frontend Setup
 
-## Frontend Setup
+Open another terminal and navigate to:
 
 ```bash
 cd frontend
+```
+
+Install dependencies:
+
+```bash
 npm install
+```
+
+Create the frontend environment file based on:
+
+```text
+frontend/.env.example
+```
+
+Configure the frontend to communicate with your local Spring Boot backend.
+
+Then start Vite:
+
+```bash
 npm run dev
 ```
 
-Local frontend:
+The frontend will normally be available at:
 
 ```text
 http://localhost:5173
 ```
 
-## API Documentation
+---
 
-See [expenseflow/API_DOCUMENTATION.md](expenseflow/API_DOCUMENTATION.md).
+# 🧪 Testing
 
-## Project Structure
+The backend contains Spring Boot test infrastructure.
 
-```text
-expenseflow/
-|-- expenseflow/              Spring Boot backend
-|   |-- src/main/java/...     controllers, services, repositories, entities, DTOs, security
-|   |-- src/main/resources    application configuration
-|   |-- API_DOCUMENTATION.md  backend API reference
-|   `-- pom.xml
-|-- frontend/                 React frontend
-|   |-- src/components        reusable UI components
-|   |-- src/context           auth and theme context
-|   |-- src/hooks             data fetching hooks
-|   |-- src/pages             route-level pages
-|   |-- src/services          Axios API client
-|   |-- src/styles            global CSS
-|   `-- package.json
-`-- README.md
+Run backend tests with:
+
+### Windows
+
+```bash
+cd expenseflow
+.\mvnw.cmd test
 ```
 
-## Deployment Preparation
+### macOS / Linux
 
-Frontend on Vercel:
+```bash
+cd expenseflow
+./mvnw test
+```
 
-- Set `VITE_API_URL` to the deployed backend URL.
-- Build command: `npm run build`.
-- Output directory: `dist`.
+For manual application testing, verify:
 
-Backend on Render or Railway:
+* Registration
+* Login
+* Logout
+* Protected routes
+* Add expense
+* Edit expense
+* Delete expense
+* Dashboard calculations
+* Expense persistence
+* Invalid authentication
+* Unauthorized requests
 
-- Set `DB_URL`, `DB_USERNAME`, `DB_PASSWORD`, `JWT_SECRET`, `JWT_EXPIRATION_SECONDS`, and `FRONTEND_ORIGIN`.
-- Use Java 21.
-- Deploy from the `expenseflow/` backend folder.
+---
 
-Database:
+# 🌍 Production Deployment
 
-- Use a managed MySQL service.
-- Create the database before starting the backend.
-- Configure the backend with the managed database JDBC URL and credentials.
+ExpenseFlow is deployed as a multi-service full-stack application.
 
-## Resume-Ready Features
+## Frontend
 
-- Built a layered full-stack application using Spring Boot and React.
-- Implemented JWT auth, BCrypt hashing, protected routes, and CORS configuration.
-- Designed REST APIs with DTOs, validation, global exception handling, and proper status codes.
-- Added expense search, filtering, sorting, pagination, and analytics reporting.
-- Built a responsive SaaS-style dashboard with charts, dark mode, loading states, and toasts.
-- Prepared environment-based configuration for local development and deployment.
+The React/Vite frontend is deployed on:
+
+**Vercel**
+
+Production application:
+
+**[ExpenseFlow](https://expense-flow-kohl-ten.vercel.app/)**
+
+The Vercel deployment is connected to the GitHub repository and builds the frontend application.
+
+---
+
+## Backend
+
+The Spring Boot REST API is deployed on:
+
+**Railway**
+
+Production API:
+
+**[ExpenseFlow Backend](https://expenseflow-production-d9e1.up.railway.app/)**
+
+Railway builds and runs the Spring Boot application using the project's backend configuration.
+
+---
+
+## Database
+
+The production MySQL database is hosted on Railway.
+
+The backend connects to the production database through environment variables rather than hard-coded credentials.
+
+The production configuration uses:
+
+```text
+DB_URL
+DB_USERNAME
+DB_PASSWORD
+JWT_SECRET
+JWT_EXPIRATION_SECONDS
+FRONTEND_ORIGIN
+```
+
+Sensitive production values are stored in the deployment platform rather than committed to GitHub.
+
+---
+
+# 🔐 Security
+
+ExpenseFlow follows several basic security practices:
+
+* JWT-based authentication
+* Protected API endpoints
+* User-specific data access
+* Environment-based secret management
+* Sensitive files excluded through `.gitignore`
+* Production secrets stored outside the source repository
+* CORS configuration
+* Centralized exception handling
+
+### Important
+
+Do not commit:
+
+```text
+.env
+application-local.properties
+database passwords
+JWT secrets
+API keys
+```
+
+Production secrets should always be configured through the deployment platform's environment-variable system.
+
+---
+
+# 📚 Additional Documentation
+
+Additional backend/API documentation is available in:
+
+```text
+expenseflow/API_DOCUMENTATION.md
+```
+
+Backend-specific information:
+
+```text
+expenseflow/README.md
+```
+
+---
+
+# 🔄 Development Workflow
+
+The project follows a simple Git-based development workflow:
+
+```text
+Local Development
+       │
+       ▼
+Test locally
+       │
+       ▼
+Git commit
+       │
+       ▼
+Push to GitHub
+       │
+       ├──────────────► Vercel
+       │                  │
+       │                  ▼
+       │              Frontend
+       │
+       └──────────────► Railway
+                          │
+                          ▼
+                    Spring Boot API
+                          │
+                          ▼
+                      MySQL
+```
+
+Changes pushed to the production branch can trigger new deployments on the connected hosting platforms.
+
+---
+
+# 🎯 Project Goals
+
+ExpenseFlow was developed to demonstrate practical full-stack software development concepts, including:
+
+* Frontend development
+* Backend API development
+* Database design and persistence
+* Authentication and authorization
+* RESTful architecture
+* API documentation
+* Environment-based configuration
+* Cloud deployment
+* Git-based development workflow
+
+---
+
+# 🚧 Future Improvements
+
+Potential future improvements include:
+
+* Automated CI/CD testing pipeline
+* Advanced expense filtering
+* Budget management
+* Recurring expenses
+* Export reports to CSV/PDF
+* More detailed analytics
+* Automated database migrations
+* Email notifications
+* Improved test coverage
+* Role-based administrative features
+
+---
+
+# 👨‍💻 Maintainer
+
+**Vaishali Sahu**
+
+GitHub:
+
+**[@vaishalisahu017](https://github.com/vaishalisahu017)**
+
+---
+
+# 📄 License
+
+This project is currently intended as a portfolio and educational project.
+
+If you plan to redistribute or modify the project, please contact the maintainer regarding licensing.
+
+````
