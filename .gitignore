@@ -1,0 +1,22 @@
+# Environment files
+.env
+.env.*
+!.env.example
+application-local.properties
+
+# Java / Maven
+target/
+*/target/
+
+# Node / Vite
+node_modules/
+*/node_modules/
+dist/
+*/dist/
+
+# IDE and OS files
+.vscode/
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
